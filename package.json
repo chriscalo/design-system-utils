@@ -1,0 +1,10 @@
+{
+  "name": "@chriscalo/design-system-utils",
+  "version": "0.0.1",
+  "description": "A basic design system & associated utilities for rapid prototyping",
+  "main": "design-system-utils.scss",
+  "repository": "https://github.com/chriscalo/design-system-utils.git",
+  "author": "Chris Calo <chris.calo@gmail.com>",
+  "license": "MIT",
+  "private": false
+}
