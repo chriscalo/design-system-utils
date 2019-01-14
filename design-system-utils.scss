@@ -1,3 +1,4 @@
+// all sizing is based on an 8px grid, but this is overridable
 $grid-unit: 8px !default;
 
 // returns the value with units stripped
@@ -6,6 +7,7 @@ $grid-unit: 8px !default;
   @return $number / ($number * 0 + 1);
 }
 
+// EXPERIMENTAL: a `gr` unit that equals one grid unit
 @function gr-to-px($length) {
   @if unit($length) == gr {
     @return $value($length) * $grid-unit * 1px;
@@ -14,15 +16,17 @@ $grid-unit: 8px !default;
   }
 }
 
-@mixin outline($color: magenta) {
-  outline: solid 1px $color;
-  outline-offset: -1px; // inset instead of outset
+// draw an outline on any element, useful for layout debugging
+@mixin outline($color: magenta, $thickness: 1px) {
+  outline: solid $thickness $color;
+  outline-offset: -1 * $thickness;
 }
 
 @mixin debug {
   @include outline;
 }
 
+// reset background, border, padding, margin, and focus
 @mixin reset {
   background: none;
   border: none;
@@ -50,6 +54,12 @@ $grid-unit: 8px !default;
   display: grid;
 }
 
+// absolutely-positioned layers
+@mixin absolute {
+  position: absolute;
+}
+
+// layer edge pinning
 @mixin pin-top($distance: 0) {
   top: $distance;
 }
@@ -116,14 +126,21 @@ $grid-unit: 8px !default;
   @include unpin-left;
 }
 
+// 
 @mixin relative {
   position: relative;
 }
 
+@mixin coord-sys {
+  @include relative;
+}
+
+// becomes a containing block for all descendant elements, including position: fixed
 @mixin fixed-containing-block {
   transform: translate(0, 0);
 }
 
+// horizontal stack
 @mixin stack-h($gap: 0) {
   display: flex;
   flex-direction: row;
@@ -137,6 +154,7 @@ $grid-unit: 8px !default;
   }
 }
 
+// vertical stack
 @mixin stack-v($gap: 0) {
   display: flex;
   flex-direction: column;
@@ -154,6 +172,11 @@ $grid-unit: 8px !default;
   flex-basis: $value;
 }
 
+@mixin flex($dir: row, $main: center, $cross: center, $overflow: prevent, $lines: center) {
+  // TODO
+}
+
+// better names for flexbox cross-axis alignment
 @mixin cross-align($value) {
   $cross-align: (
     start: flex-start,
@@ -163,6 +186,19 @@ $grid-unit: 8px !default;
     fill: stretch,
   );
   align-items: map-get($cross-align, $value);
+}
+
+// distributes extra space along main axis
+@mixin main-align($value) {
+  $main-align: (
+    start: flex-start,
+    center: center,
+    end: flex-end,
+    distribute: space-between,
+    // ???: space-around,
+    // ???: space-evenly,
+  );
+  justify-content: map-get($main-align, $value);
 }
 
 @mixin block {
@@ -179,10 +215,6 @@ $grid-unit: 8px !default;
   @include absolute;
   @include opacity(0);
   @include no-mouse;
-}
-
-@mixin absolute {
-  position: absolute;
 }
 
 @mixin opacity($value) {
