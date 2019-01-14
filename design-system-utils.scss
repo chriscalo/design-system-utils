@@ -1,0 +1,454 @@
+$grid-unit: 8px !default;
+
+// returns the value with units stripped
+// complements the `unit()` function
+@function value($number) {
+  @return $number / ($number * 0 + 1);
+}
+
+@function gr-to-px($length) {
+  @if unit($length) == gr {
+    @return $value($length) * $grid-unit * 1px;
+  } @else {
+    @return $length;
+  }
+}
+
+@mixin outline($color: magenta) {
+  outline: solid 1px $color;
+  outline-offset: -1px; // inset instead of outset
+}
+
+@mixin debug {
+  @include outline;
+}
+
+@mixin reset {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  
+  &:focus {
+    outline: none;
+  }
+}
+
+// intended for inline elements
+@mixin nudge-y($amount) {
+  @include relative;
+  top: $amount;
+}
+
+// intended for inline elements
+@mixin nudge-x($amount) {
+  @include relative;
+  left: $amount;
+}
+
+@mixin grid {
+  display: grid;
+}
+
+@mixin pin-top($distance: 0) {
+  top: $distance;
+}
+
+@mixin pin-right($distance: 0) {
+  right: $distance;
+}
+
+@mixin pin-bottom($distance: 0) {
+  bottom: $distance;
+}
+
+@mixin pin-left($distance: 0) {
+  left: $distance;
+}
+
+@mixin pin-x($distance: 0) {
+  @include pin-right($distance);
+  @include pin-left($distance);
+}
+
+@mixin pin-y($distance: 0) {
+  @include pin-top($distance);
+  @include pin-bottom($distance);
+}
+
+@mixin pin-all($distance: 0) {
+  @include pin-top($distance);
+  @include pin-right($distance);
+  @include pin-bottom($distance);
+  @include pin-left($distance);
+}
+
+@mixin unpin-top {
+  top: auto;
+}
+
+@mixin unpin-right {
+  right: auto;
+}
+
+@mixin unpin-bottom {
+  bottom: auto;
+}
+
+@mixin unpin-left {
+  left: auto;
+}
+
+@mixin unpin-x {
+  @include unpin-right;
+  @include unpin-left;
+}
+
+@mixin unpin-y {
+  @include unpin-top;
+  @include unpin-bottom;
+}
+
+@mixin unpin-all {
+  @include unpin-top;
+  @include unpin-right;
+  @include unpin-bottom;
+  @include unpin-left;
+}
+
+@mixin relative {
+  position: relative;
+}
+
+@mixin fixed-containing-block {
+  transform: translate(0, 0);
+}
+
+@mixin stack-h($gap: 0) {
+  display: flex;
+  flex-direction: row;
+  
+  @if $gap != 0 {
+    $gap-value: $gap * $grid-unit;
+    
+    & > :not(:last-child) {
+      margin-right: $gap-value;
+    }
+  }
+}
+
+@mixin stack-v($gap: 0) {
+  display: flex;
+  flex-direction: column;
+  
+  @if $gap != 0 {
+    $gap-value: $gap * $grid-unit;
+    
+    & > :not(:last-child) {
+      margin-bottom: $gap-value;
+    }
+  }
+}
+
+@mixin basis($value) {
+  flex-basis: $value;
+}
+
+@mixin cross-align($value) {
+  $cross-align: (
+    start: flex-start,
+    center: center,
+    end: flex-end,
+    baseline: baseline,
+    fill: stretch,
+  );
+  align-items: map-get($cross-align, $value);
+}
+
+@mixin block {
+  display: block;
+}
+
+@mixin center-xy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin screen-reader-only {
+  @include absolute;
+  @include opacity(0);
+  @include no-mouse;
+}
+
+@mixin absolute {
+  position: absolute;
+}
+
+@mixin opacity($value) {
+  opacity: $value;
+}
+
+@mixin no-mouse {
+  pointer-events: none;
+}
+
+$corners: (
+  none: 0,
+  xs: 1px,
+  s: 2px,
+  m: 4px,
+  l: 8px,
+  xl: 16px,
+  xxl: 32px,
+);
+
+@mixin rounded($value: m) {
+  border-radius: map-get($corners, $value);
+}
+
+@mixin rounded-left($value: m) {
+  border-top-left-radius: map-get($corners, $value);
+  border-bottom-left-radius: map-get($corners, $value);
+}
+
+@mixin rounded-right($value: m) {
+  border-top-right-radius: map-get($corners, $value);
+  border-bottom-right-radius: map-get($corners, $value);
+}
+
+@mixin rounded-x-first-last($value: m) {
+  &:first-child {
+    @include rounded-left($value);
+  }
+  &:last-child {
+    @include rounded-right($value);
+  }
+}
+
+@mixin grow($value: 1) {
+  flex-grow: $value;
+}
+
+@mixin no-grow {
+  flex-grow: 0;
+}
+
+@mixin shrink($value: 1) {
+  flex-shrink: $value;
+}
+
+@mixin no-shrink {
+  flex-shrink: 0;
+}
+
+@mixin spacer {
+  @include grow;
+}
+
+@mixin bg($value) {
+  background: $value;
+}
+
+@mixin min-width($n) {
+  min-width: $n * $grid-unit;
+}
+
+@mixin width($n) {
+  width: $n * $grid-unit;
+}
+
+@mixin min-height($n) {
+  min-height: $n * $grid-unit;
+}
+
+// TODO: rename to space-outside?
+@mixin margin($n) {
+  margin: $n * $grid-unit;
+}
+
+// TODO: rename to space-inside?
+@mixin pad($n) {
+  padding: $n * $grid-unit;
+}
+
+@mixin pad-x($n) {
+  $value: $n * $grid-unit;
+  padding-left: $value;
+  padding-right: $value;
+}
+
+@mixin pad-y($n) {
+  $value: $n * $grid-unit;
+  padding-top: $value;
+  padding-bottom: $value;
+}
+
+@mixin height($n) {
+  height: $n * $grid-unit;
+}
+
+@mixin size($n) {
+  width: $n * 8px;
+  height: $n * 8px;
+}
+
+@mixin inline-block {
+  display: inline-block;
+}
+
+@mixin inset {
+  box-shadow:
+    inset 0 1px 1px -1px hsla(0, 0%, 0%, 0.5),
+    inset 0 -1px 1px -1px hsla(0, 0%, 100%, 0.5);
+}
+
+@mixin outset {
+  box-shadow:
+    inset 0 1px 1px -1px hsla(0, 0%, 100%, 0.5),
+    inset 0 -1px 1px -1px hsla(0, 0%, 0%, 0.5);
+}
+
+@mixin font-google-sans {
+  font-family: "Google Sans", Arial, sans-serif;
+}
+
+$icon-scale: (
+  "xs": 16px,
+  "s": 20px,
+  "m": 24px,
+  "l": 28px,
+  "xl": 32px,
+);
+
+@mixin icon-size($size) {
+  font-size: map-get($icon-scale, $size);
+}
+
+$text-scale: (
+  "xxxs": 11px,
+  "xxs": 12px,
+  "xs": 13px,
+  "s": 14px,
+  "m": 16px,
+  "l": 20px,
+  "xl": 24px,
+  "xxl": 32px,
+  "xxxl": 48px,
+);
+
+@mixin text-size($size) {
+  // TODO: use px, em, etc values if they are passed in
+  font-size: map-get($text-scale, $size);
+}
+
+@mixin text-color($color) {
+  color: $color;
+}
+
+@mixin text-left {
+  text-align: left;
+}
+
+@mixin text-center {
+  text-align: center;
+}
+
+@mixin text-right {
+  text-align: right;
+}
+
+@mixin text-justify {
+  text-align: justify;
+}
+
+@mixin capitalize {
+  text-transform: capitalize;
+}
+
+@mixin uppercase {
+  text-transform: uppercase;
+}
+
+@mixin lowercase {
+  text-transform: lowercase;
+}
+
+@mixin text-weight($value) {
+  $text-weight-scale: (
+    "hairline": 100,
+    "thin": 200,
+    "light": 300,
+    "normal": 400,
+    "medium": 500,
+    "semibold": 600,
+    "bold": 700,
+    "extrabold": 800,
+    "black": 900,
+  );
+  font-weight: map-get($text-weight-scale, $value);
+}
+
+$stroke-color: rgba(0, 0, 0, 0.1);
+$stroke: solid 1px $stroke-color;
+
+// TODO: make all of these box-shadows
+@mixin stroke($value: $stroke) {
+  border: $value;
+}
+
+@mixin stroke-y($value: $stroke) {
+  border-top: $value;
+  border-bottom: $value;
+}
+
+@mixin stroke-x($value: $stroke) {
+  border-right: $value;
+  border-left: $value;
+}
+
+@mixin stroke-top($value: $stroke) {
+  border-top: $value;
+}
+
+@mixin stroke-right($value: $stroke) {
+  border-right: $value;
+}
+
+@mixin stroke-bottom($value: $stroke) {
+  border-bottom: $value;
+}
+
+@mixin stroke-left($value: $stroke) {
+  border-left: $value;
+}
+
+@mixin no-select {
+  user-select: none;
+}
+
+@mixin scroll-y {
+  overflow-y: auto;
+}
+
+@mixin scroll-x {
+  overflow-x: auto;
+}
+
+@mixin no-border {
+  border: none;
+}
+
+@mixin no-stroke {
+  border: none;
+}
+
+@mixin cursor($name) {
+  // Values:
+  //   auto default none context-menu help pointer progress wait cell
+  //   crosshair text vertical-text alias copy move no-drop not-allowed e-resize
+  //   n-resize ne-resize nw-resize s-resize se-resize sw-resize w-resize
+  //   ew-resize ns-resize nesw-resize nwse-resize col-resize row-resize
+  //   all-scroll zoom-in zoom-out grab grabbing;
+  cursor: $name;
+}
