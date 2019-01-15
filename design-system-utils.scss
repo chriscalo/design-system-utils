@@ -126,7 +126,6 @@ $grid-unit: 8px !default;
   @include unpin-left;
 }
 
-// 
 @mixin relative {
   position: relative;
 }
