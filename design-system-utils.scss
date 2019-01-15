@@ -54,6 +54,13 @@ $grid-unit: 8px !default;
   display: grid;
 }
 
+@mixin grid-cols($cols: 2) {
+  // TODO: if integer:
+  grid-template-columns: repeat($cols, minmax(0, 1fr));
+  // TODO: if list of values
+  // grid-template-columns: $cols;
+}
+
 // absolutely-positioned layers
 @mixin absolute {
   position: absolute;
