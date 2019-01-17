@@ -1,5 +1,13 @@
 # @chriscalo/design-system-utils
 
+## Local development
+
+To autogenerate `dist/colors.scss`:
+
+``` sh
+yarn run dev
+```
+
 ## Publish to npm
 
 First, update the version:
