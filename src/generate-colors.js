@@ -5,7 +5,7 @@ const path = require("path");
 
 const outputFile = path.join(__dirname, "../dist/colors.scss");
 const output = [
-  "// Auto-generated colors, do not modify",
+  `// Auto-generated colors, do not modify`,
 ];
 
 Object.entries(scales).forEach(([colorName, scale]) => {
