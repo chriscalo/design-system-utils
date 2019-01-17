@@ -4,7 +4,9 @@ const fs = require("fs-extra");
 const path = require("path");
 
 const outputFile = path.join(__dirname, "../dist/colors.scss");
-const output = [];
+const output = [
+  "// Auto-generated colors, do not modify",
+];
 
 Object.entries(scales).forEach(([colorName, scale]) => {
   // empty line between colors
