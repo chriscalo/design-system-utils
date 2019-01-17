@@ -141,7 +141,7 @@ $grid-unit: 8px !default;
   @include relative;
 }
 
-// becomes a containing block for all descendant elements, including position: fixed
+// containing block for all descendant elements, including `position: fixed`
 @mixin fixed-containing-block {
   transform: translate(0, 0);
 }
