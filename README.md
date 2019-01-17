@@ -2,7 +2,7 @@
 
 ## Local development
 
-To autogenerate `dist/colors.scss`:
+To autogenerate `dist/colors.scss` in watch mode via `nodemon`:
 
 ``` sh
 yarn run dev
