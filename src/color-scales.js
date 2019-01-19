@@ -76,34 +76,34 @@ module.exports = {
   scales: {
     // greys
     ["neutral-grey"]: createColorScale(0, 0, "Neutral Grey"),
-    ["cool-grey"]: createColorScale(coolGreyHue, 3, "Cool Grey"),
-    ["warm-grey"]: createColorScale(warmGreyHue, 6, "Warm Grey"),
+    ["cool-grey"]: createColorScale(coolGreyHue, 6, "Cool Grey"),
+    ["warm-grey"]: createColorScale(warmGreyHue, 9, "Warm Grey"),
 
     // colors
-    ["hue-15"]: createColorScale(15, 80, "Hue 15"), // ?
+    // ["hue-15"]: createColorScale(15, 80, "Hue 15"), // ?
     ["red"]: createColorScale(30, 80, "Red"),
     ["burnt-orange"]: createColorScale(45, 80, "Burnt Orange"), // ?
-    ["orange"]: createColorScale(60, 80, "Orange"), //
-    ["brown"]: createColorScale(75, 80, "Brown"), //
-    ["tan"]: createColorScale(90, 80, "Tan"), //
+    ["orange"]: createColorScale(60, 80, "Orange"),
+    ["brown"]: createColorScale(75, 80, "Brown"),
+    ["tan"]: createColorScale(90, 80, "Tan"),
     ["olive"]: createColorScale(105, 80, "Olive"),
     ["lime"]: createColorScale(120, 80, "Lime"),
-    ["hue-135"]: createColorScale(135, 80, "Hue 135"), //
-    ["green"]: createColorScale(150, 80, "Green"), //
-    ["hue-165"]: createColorScale(165, 80, "Hue 165"), // rain forest? Eucalyptus?
+    // ["hue-135"]: createColorScale(135, 80, "Hue 135"),
+    ["green"]: createColorScale(150, 80, "Green"),
+    // ["hue-165"]: createColorScale(165, 80, "Hue 165"), // rain forest? Eucalyptus?
     ["sea-green"]: createColorScale(180, 80, "Sea Green"),
     ["teal"]: createColorScale(195, 80, "Teal"),
     ["aqua"]: createColorScale(210, 80, "Aqua"),
-    ["hue-225"]: createColorScale(225, 80, "Hue 225"), //
-    ["sky-blue"]: createColorScale(240, 80, "Sky Blue"), //
-    ["hue-255"]: createColorScale(255, 80, "Hue 255"), //
-    ["hue-270"]: createColorScale(270, 80, "Hue 270"), //
+    // ["hue-225"]: createColorScale(225, 80, "Hue 225"),
+    ["sky-blue"]: createColorScale(240, 80, "Sky Blue"),
+    // ["hue-255"]: createColorScale(255, 80, "Hue 255"),
+    // ["hue-270"]: createColorScale(270, 80, "Hue 270"),
     ["navy"]: createColorScale(260, 50, "Navy"), // muted blue?
-    ["blue"]: createColorScale(285, 80, "Blue"), //
-    ["indigo"]: createColorScale(300, 80, "Indigo"), //
-    ["purple"]: createColorScale(315, 80, "Purple"), //
+    ["blue"]: createColorScale(285, 80, "Blue"),
+    ["indigo"]: createColorScale(300, 80, "Indigo"),
+    ["purple"]: createColorScale(315, 80, "Purple"),
     ["magenta"]: createColorScale(330, 80, "Magenta"),
-    ["pink"]: createColorScale(345, 80, "Pink"), //
+    ["pink"]: createColorScale(345, 80, "Pink"),
     ["rose"]: createColorScale(360, 80, "Rose"), // fuscia?
   },
   
