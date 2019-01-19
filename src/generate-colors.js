@@ -3,7 +3,7 @@ const { scales } = require("./color-scales");
 const fs = require("fs-extra");
 const path = require("path");
 
-const outputFile = path.join(__dirname, "../dist/colors.scss");
+const outputFile = path.join(__dirname, "./colors.scss");
 const output = [
   `// Auto-generated colors, do not modify`,
 ];
