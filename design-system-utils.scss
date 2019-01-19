@@ -285,7 +285,7 @@ $corners: (
 }
 
 @mixin bg($value) {
-  background: $value;
+  background-color: $value;
 }
 
 @mixin min-width($n) {
