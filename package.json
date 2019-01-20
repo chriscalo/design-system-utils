@@ -11,7 +11,7 @@
     "dev": "nodemon src/generate-colors.js",
     "publish:patch": "npm version patch && npm publish",
     "publish:minor": "npm version minor && npm publish",
-    "publish:major": "npm version major && npm publish",
+    "publish:major": "npm version major && npm publish"
   },
   "dependencies": {
     "bezier-js": "^2.3.1",
