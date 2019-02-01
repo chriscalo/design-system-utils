@@ -1,6 +1,3 @@
-// TODO: use this for color names!!!
-// http://chir.ag/projects/name-that-color/
-
 const chroma = require("chroma-js");
 const Bezier = require("bezier-js");
 
