@@ -309,6 +309,18 @@ $corners: (
   margin: $n * $grid-unit;
 }
 
+@mixin margin-x($n) {
+  $value: $n * $grid-unit;
+  margin-left: $value;
+  margin-right: $value;
+}
+
+@mixin margin-y($n) {
+  $value: $n * $grid-unit;
+  margin-top: $value;
+  margin-bottom: $value;
+}
+
 // TODO: rename to space-inside?
 @mixin pad($n) {
   padding: $n * $grid-unit;
@@ -475,6 +487,10 @@ $stroke: solid 1px $stroke-color;
 
 @mixin scroll-x {
   overflow-x: auto;
+}
+
+@mixin scroll-xy {
+  overflow: auto;
 }
 
 @mixin no-border {
