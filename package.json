@@ -1,6 +1,6 @@
 {
   "name": "@chriscalo/design-system-utils",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "A basic design system & associated utilities for rapid prototyping",
   "main": "src/design-system-utils.scss",
   "repository": "https://github.com/chriscalo/design-system-utils.git",
