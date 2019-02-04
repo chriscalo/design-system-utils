@@ -1,17 +1,24 @@
 @import "./borders.scss";
 @import "./colors.scss";
 
-
-// all sizing is based on an 8px grid (overridable)
+/// Size of base grid unit. All sizing is based on an 8px grid (overridable).
+///
+/// @group Sizing
+///
+/// @example scss - Set padding to 1 grid unit
+///   .foo {
+///     padding: 1 * $grid-unit; /// 8px
+///   }
 $grid-unit: 8px !default;
 
-// returns the value with units stripped
-// complements the `unit()` function
+/// Returns the value with units stripped. Complement to the built-in `unit()`
+/// function
+/// @group Units
 @function value($number) {
   @return $number / ($number * 0 + 1);
 }
 
-// EXPERIMENTAL: a `gr` unit that equals one grid unit
+/// EXPERIMENTAL: a `gr` unit that equals one grid unit
 @function gr-to-px($length) {
   @if unit($length) == gr {
     @return $value($length) * $grid-unit * 1px;
@@ -20,17 +27,18 @@ $grid-unit: 8px !default;
   }
 }
 
-// draw an outline on any element, useful for layout debugging
+/// draw an outline on any element
 @mixin outline($color: magenta, $thickness: 1px) {
   outline: solid $thickness $color;
   outline-offset: -1 * $thickness;
 }
 
+/// debug an element's layout by drawing a magenta box around it
 @mixin debug {
   @include outline;
 }
 
-// reset background, border, padding, margin, and focus
+/// reset background, border, padding, margin, and focus
 @mixin reset {
   background: none;
   border: none;
@@ -42,13 +50,13 @@ $grid-unit: 8px !default;
   }
 }
 
-// intended for inline elements
+/// intended for inline elements
 @mixin nudge-y($amount) {
   @include relative;
   top: $amount;
 }
 
-// intended for inline elements
+/// intended for inline elements
 @mixin nudge-x($amount) {
   @include relative;
   left: $amount;
@@ -65,12 +73,12 @@ $grid-unit: 8px !default;
   // grid-template-columns: $cols;
 }
 
-// absolutely-positioned layers
+/// absolutely-positioned layers
 @mixin absolute {
   position: absolute;
 }
 
-// layer edge pinning
+/// layer edge pinning
 @mixin pin-top($distance: 0) {
   top: $distance;
 }
@@ -145,12 +153,12 @@ $grid-unit: 8px !default;
   @include relative;
 }
 
-// containing block for all descendant elements, including `position: fixed`
+/// containing block for all descendant elements, including `position: fixed`
 @mixin fixed-containing-block {
   transform: translate(0, 0);
 }
 
-// horizontal stack
+/// horizontal stack
 @mixin stack-h($gap: 0) {
   display: flex;
   flex-direction: row;
@@ -164,7 +172,7 @@ $grid-unit: 8px !default;
   }
 }
 
-// vertical stack
+/// vertical stack
 @mixin stack-v($gap: 0) {
   display: flex;
   flex-direction: column;
@@ -186,7 +194,7 @@ $grid-unit: 8px !default;
   // TODO
 }
 
-// better names for flexbox cross-axis alignment
+/// better names for flexbox cross-axis alignment
 @mixin cross-align($value) {
   $cross-align: (
     start: flex-start,
@@ -198,7 +206,7 @@ $grid-unit: 8px !default;
   align-items: map-get($cross-align, $value);
 }
 
-// distributes extra space along main axis
+/// distributes extra space along main axis
 @mixin main-align($value) {
   $main-align: (
     start: flex-start,
@@ -501,12 +509,12 @@ $stroke: solid 1px $stroke-color;
   border: none;
 }
 
+/// Values:
+///   auto default none context-menu help pointer progress wait cell
+///   crosshair text vertical-text alias copy move no-drop not-allowed e-resize
+///   n-resize ne-resize nw-resize s-resize se-resize sw-resize w-resize
+///   ew-resize ns-resize nesw-resize nwse-resize col-resize row-resize
+///   all-scroll zoom-in zoom-out grab grabbing;
 @mixin cursor($name) {
-  // Values:
-  //   auto default none context-menu help pointer progress wait cell
-  //   crosshair text vertical-text alias copy move no-drop not-allowed e-resize
-  //   n-resize ne-resize nw-resize s-resize se-resize sw-resize w-resize
-  //   ew-resize ns-resize nesw-resize nwse-resize col-resize row-resize
-  //   all-scroll zoom-in zoom-out grab grabbing;
   cursor: $name;
 }
