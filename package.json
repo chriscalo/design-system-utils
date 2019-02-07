@@ -8,14 +8,18 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "dev": "nodemon src/generate-colors.js",
+    "dev": "run-p dev:*",
+    "dev:colors": "nodemon src/generate-colors.js",
+    "dev:sassdoc": "chokidar 'src/design-system-utils.scss' --command 'yarn run sassdoc' --initial",
     "sassdoc": "sassdoc src/design-system-utils.scss"
   },
   "devDependencies": {
     "bezier-js": "^2.3.1",
+    "chokidar-cli": "^1.2.1",
     "chroma-js": "^2.0.2",
     "fs-extra": "^7.0.1",
     "nodemon": "^1.18.9",
+    "npm-run-all": "^4.1.5",
     "sassdoc": "^2.5.1"
   }
 }

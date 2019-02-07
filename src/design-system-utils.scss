@@ -27,7 +27,9 @@ $grid-unit: 8px !default;
   }
 }
 
-/// draw an outline on any element
+/// draw an outline around any element
+/// @param {color} $color [magenta] - The outline color
+/// @param {length} $thickness [1px] - The outline thickness
 @mixin outline($color: magenta, $thickness: 1px) {
   outline: solid $thickness $color;
   outline-offset: -1 * $thickness;
@@ -38,7 +40,8 @@ $grid-unit: 8px !default;
   @include outline;
 }
 
-/// reset background, border, padding, margin, and focus
+/// Resets styling on an element, including background, border, padding, margin,
+/// and focus
 @mixin reset {
   background: none;
   border: none;
@@ -50,13 +53,13 @@ $grid-unit: 8px !default;
   }
 }
 
-/// intended for inline elements
+/// Nudge inline elements in the y-direction
 @mixin nudge-y($amount) {
   @include relative;
   top: $amount;
 }
 
-/// intended for inline elements
+/// Nudge inline elements in the x-direction
 @mixin nudge-x($amount) {
   @include relative;
   left: $amount;
