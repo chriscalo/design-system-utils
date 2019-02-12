@@ -2,7 +2,7 @@
 
 ## Local development
 
-To autogenerate `dist/colors.scss` and Sassdocs in watch mode:
+To autogenerate colors (`dist/colors.scss`) and Sassdocs (`sassdoc/`) in watch mode:
 
 ``` sh
 yarn run dev
